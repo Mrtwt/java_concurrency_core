@@ -3,11 +3,13 @@ package threadcoreknowledge.sixstates;
 /**
  * 描述：     展示Blocked, Waiting, TimedWaiting
  */
-public class BlockedWaitingTimedWaiting implements Runnable{
-    public static void main(String[] args) {
+public class BlockedWaitingTimedWaiting implements Runnable {
+    public static void main(String[] args) throws InterruptedException {
         BlockedWaitingTimedWaiting runnable = new BlockedWaitingTimedWaiting();
         Thread thread1 = new Thread(runnable);
         thread1.start();
+        //延迟100ms启动线程2，保证线程1先执行run
+        Thread.sleep(100);
         Thread thread2 = new Thread(runnable);
         thread2.start();
         try {
